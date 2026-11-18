@@ -1,75 +1,27 @@
 import { useState } from 'react';
 import './App.css';
 
-//we can use several different techniques to render out a conditional component
-//we can see if a value is true on a prop, and if it is we can render a jsx element, and if not render a different element
+//we can use lists to render out arrays and arrays of objects
+//this allows us to work with large data sets and can implement some cool features
 
-function Light(props){
-  if(props.on){
-    return <p>Light is on</p>
-  }
-  else{
-    return <p>Light is off</p>
-  }
-}
+function CourseList(){
+  const courseTitles = ["SDEV 120", "SDEV 200", "SDEV 255"]
 
-//use if, elseif and else to see changes are saved
-function StatusBanner(props){
-  let banner
 
-  if (props.status === "success"){
-    banner = <div>Changes Saved</div>
-  }
-  else if (props.status === "error"){
-    banner = <div>Something went wrong</div>
-  }
-
-  else{
-    banner = <div>Draft Mode</div>
-  }
-
+  //use react to render out a list using the .map method
+  //we do this by calling the courseTitles and give it a parameter name that represents each item in the list
   return(
-    <section>{banner}</section>
-  )
-}
-
-//ternary operator
-function AuthButton(props){
-  //this button will say Log in if the user is not logged in, and will say logout if the user is not logged out
-
-  return(
-    <button>
-      {props.isLoggedIn ? "Logout" : "Login"}
-    </button>
-  )
-}
-
-//you can use the same logical and relational operators as any if statement in JS
-//&& example
-function Account(props){
-
-  return(
-    <>
-      <h1>Account Information</h1>
-      {props.balance > 0 && <p>You owe ${props.balance}</p>}
-    
-    </>
+    <ul>
+      {courseTitles.map(course => <li>{course}</li>)}
+    </ul>
   )
 }
 
 
 function App() {
   return (
-    <>
-    <Light on={true} />
-    <StatusBanner status="success" />
 
-    <AuthButton isLoggedIn={true} />
-
-    <Account balance={10.00} />
-
-
-    </>
+    <CourseList />
     
 
   );
