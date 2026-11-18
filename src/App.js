@@ -44,6 +44,19 @@ function AuthButton(props){
   )
 }
 
+//you can use the same logical and relational operators as any if statement in JS
+//&& example
+function Account(props){
+
+  return(
+    <>
+      <h1>Account Information</h1>
+      {props.balance > 0 && <p>You owe ${props.balance}</p>}
+    
+    </>
+  )
+}
+
 
 function App() {
   return (
@@ -52,6 +65,8 @@ function App() {
     <StatusBanner status="success" />
 
     <AuthButton isLoggedIn={true} />
+
+    <Account balance={10.00} />
 
 
     </>
