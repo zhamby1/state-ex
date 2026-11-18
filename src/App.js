@@ -3,29 +3,39 @@ import './App.css';
 
 //we can use lists to render out arrays and arrays of objects
 //this allows us to work with large data sets and can implement some cool features
+//we can also use filter and use state to help us with this
 
-function CourseList(){
-  const courseTitles = [
-    {id: 1, title: "SDEV 120"},
-    {id: 2, title: "SDEV 200"},
-    {id: 3, title: "SDEV 255"}
-  ]
+function TodoList(){
+  //use use state so we can update the list and delete things from it as we go
+  const [todos, setTodos] =  useState([
+    {id: 1, text: "Vaccuum"},
+    {id: 2, text: "Wash Dishes"},
+    {id: 3, text: "Make Bed"}
+  ])
 
+  function removeTodo(idToRemove){
+    setTodos(todos.filter((todo) => todo.id !== idToRemove))
+  }
 
-  //use react to render out a list using the .map method
-  //we do this by calling the courseTitles and give it a parameter name that represents each item in the list
   return(
     <ul>
-      {courseTitles.map(course => <li key={course.id}>{course.title}</li>)}
+      {todos.map((todo) => (
+        <li key={todo.id}>
+          {todo.text}{' '}
+          <button onClick={() => removeTodo(todo.id)}>Delete</button>
+        </li>
+
+      ))}
     </ul>
   )
 }
 
 
+
 function App() {
   return (
 
-    <CourseList />
+    <TodoList />
     
 
   );
