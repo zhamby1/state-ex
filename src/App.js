@@ -2,24 +2,31 @@ import { useState } from 'react';
 import './App.css';
 
 function Movie(){
-  const [title,setTitle] = useState("Avengers")
-  const [rating,setRating] = useState("PG-13")
-  const [releaseYear, setReleaseYear] = useState(2012)
 
-  function changeMovie(){
-    setTitle("Hidden Figures")
-    setRating("PG-13")
-    setReleaseYear(2016)
+  const [movie, setMovie] = useState({
+    title: "Inception",
+    rating: "PG-13",
+    releaseYear: 2010
+  })
+
+  //spreader operator ...takes an objects values and spreads them to equal individual properties
+  function changeTitle(){
+    //it will take the previous data and you can change what piece/pieces of data you want without overwritting everything
+    setMovie(prevState => ({
+      ...prevState, title: "Titanic"
+    }))
   }
+
+
 
   return(
     <>
       <h1>Favorite Movie</h1>
       <p>
-        {title}, {rating}, {releaseYear}
+       {movie.title}, {movie.rating}, {movie.releaseYear}
       </p>
-      <button onClick={changeMovie}>
-        Change Movie
+      <button onClick={changeTitle}>
+        Change Title
       </button>
     </>
   )
